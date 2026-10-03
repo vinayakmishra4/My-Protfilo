@@ -1,98 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vinayak Mishra | Data Science and AI/ML Portfolio</title>
-<meta name="description" content="Portfolio of Vinayak Mishra: Python data analysis, visualization and machine learning projects.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
-<link rel="stylesheet" href="css/style.css">
-
-<script src="js/script.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vinayak Mishra: Data Science &amp; Machine Learning</title>
+  <meta name="description" content="Portfolio of Vinayak Mishra: data cleaning, exploratory analysis and machine learning projects in Python.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Source+Serif+4:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="bar">
-    <a class="brand" href="#top">Vinayak Mishra</a>
-    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav" aria-label="Main">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <button class="icon-btn" id="themeBtn" type="button">Dark mode</button>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-  <section class="hero">
-    <div>
-      <h1>I turn messy data into answers people can act on.</h1>
-      <p>I'm Vinayak, an aspiring AI/ML engineer. I clean, explore and model data in Python.</p>
-      <div class="actions">
-        <a class="btn primary" href="#projects">See my projects</a>
-        <a class="btn" href="mailto:your-email@example.com">Email me</a>
-      </div>
+  <header class="bar">
+    <div class="wrap bar-in">
+      <a class="brand" href="#top">Vinayak Mishra</a>
+      <button class="btn small menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav id="nav" aria-label="Main">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn small theme-btn" type="button">Dark mode</button>
     </div>
-    <figure class="plot">
-      <svg id="plot" viewBox="0 0 400 300" role="img" aria-label="Scatter plot of noisy points with a fitted line"></svg>
-      <figcaption>
-        <span id="fitText" aria-live="polite"></span>
-        <button class="btn small" id="resample" type="button">Resample</button>
-      </figcaption>
-    </figure>
-  </section>
+  </header>
 
-  <section class="section" id="projects">
-    <h2>Projects</h2>
-    <article class="project">
-      <h3>Global sugarcane production analysis</h3>
+  <main>
+    <section class="hero wrap" id="top">
       <div>
-        <p>Cleaned and analysed worldwide sugarcane production data, with the cleaning workflow documented step by step.</p>
-        <p class="stack">Python, Pandas, NumPy, Matplotlib, Seaborn</p>
-        <a class="link" href="https://github.com/your-username/your-repo">View on GitHub</a>
+        <h1>I turn messy data into answers you can act on.</h1>
+        <p class="lead">I'm Vinayak Mishra. I clean, explore and model data in Python, then explain what I find with clear charts.</p>
+        <p class="actions">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn" href="mailto:your-email@example.com">Email me</a>
+        </p>
       </div>
-    </article>
-    <article class="project">
-      <h3>Black Friday sales analysis</h3>
-      <div>
-        <p>Explored customer purchase behaviour and demographics, then drew business insights from the patterns.</p>
-        <p class="stack">Python, Pandas, Matplotlib, Seaborn</p>
-        <a class="link" href="https://github.com/your-username/your-repo">View on GitHub</a>
+      <figure class="plot">
+        <canvas id="plot" role="img" aria-label="Scatter plot of 90 points being sorted into three groups by the k-means algorithm."></canvas>
+        <figcaption>
+          <span>k-means, k = 3: points join the nearest center, then each center moves to the middle of its group.</span>
+          <button class="btn small" id="rerun" type="button">Run again</button>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="block wrap" id="projects">
+      <h2>Projects</h2>
+      <!-- To add a project, copy one <article> block and edit it. -->
+      <article class="project">
+        <h3>Global sugarcane production</h3>
+        <div>
+          <p>Cleaned a global sugarcane production dataset and charted output by country and year. The README walks through every cleaning step and the tools used.</p>
+          <p class="tools">Python, Pandas, NumPy, Matplotlib</p>
+          <p><a href="https://github.com/your-username/sugarcane-production">View code on GitHub</a></p>
+        </div>
+      </article>
+      <article class="project">
+        <h3>Black Friday sales analysis</h3>
+        <div>
+          <p>Explored customer purchase behavior and demographics in Black Friday sales data, then turned the patterns into business insights.</p>
+          <p class="tools">Python, Pandas, Seaborn</p>
+          <p><a href="https://github.com/your-username/black-friday-eda">View code on GitHub</a></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="block wrap" id="about">
+      <h2>About</h2>
+      <div class="cols">
+        <div>
+          <p>Most of my work so far is the first half of a data project: cleaning messy data, exploring it and charting what it shows. I do it all in Python, and I write each project up so someone who didn't build it can follow along.</p>
+          <p>I've also completed a full machine learning and data science program, and I'm looking for roles where I can apply it.</p>
+        </div>
+        <dl>
+          <div><dt>Certificate</dt><dd>Complete Machine Learning &amp; Data Science Program, GeeksforGeeks, July 2025</dd></div>
+          <div><dt>Focus</dt><dd>Data cleaning, exploratory analysis, visualization</dd></div>
+          <div><dt>Tools</dt><dd>Python, Pandas, NumPy, Matplotlib, Seaborn</dd></div>
+        </dl>
       </div>
-    </article>
-  </section>
+    </section>
 
-  <section class="section" id="skills">
-    <h2>Skills</h2>
-    <dl class="skills">
-      <div><dt>Tools</dt><dd>Python, Pandas, NumPy, Matplotlib, Seaborn</dd></div>
-      <div><dt>Methods</dt><dd>Data cleaning, exploratory data analysis, data visualization, machine learning</dd></div>
-    </dl>
-  </section>
+    <section class="block wrap" id="contact">
+      <h2>Contact</h2>
+      <p class="note">I'm open to AI/ML and data roles. Email is the quickest way to reach me.</p>
+      <a class="mail" href="mailto:your-email@example.com">your-email@example.com</a>
+      <p class="links">
+        <a href="https://github.com/your-username">GitHub</a>
+        <a href="https://www.linkedin.com/in/your-username">LinkedIn</a>
+      </p>
+    </section>
+  </main>
 
-  <section class="section" id="about">
-    <h2>About</h2>
-    <p>I like the work that happens before the model: finding what is wrong with a dataset, fixing it, and plotting it until the pattern is clear.</p>
-    <p>In July 2025 I completed the Complete Machine Learning &amp; Data Science Program on GeeksforGeeks. I'm now looking for AI/ML engineer roles.</p>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>I'm open to AI/ML and data roles. Email is the quickest way to reach me.</p>
-    <p class="links">
-      <a href="mailto:your-email@example.com">your-email@example.com</a>
-      <a href="https://github.com/your-username">GitHub</a>
-      <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
-    </p>
-  </section>
-</main>
-
-<footer class="site-footer">&copy; <span id="year"></span> Vinayak Mishra</footer>
-
+  <footer class="wrap"><p>&copy; <span id="year">2026</span> Vinayak Mishra</p></footer>
 </body>
 </html>
