@@ -5,47 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vinayak Mishra: Data Science &amp; Machine Learning</title>
   <meta name="description" content="Portfolio of Vinayak Mishra: data cleaning, exploratory analysis and machine learning projects in Python.">
+  <meta name="theme-color" content="#0b0e15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Source+Serif+4:wght@400;600&display=swap">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="bar">
-    <div class="wrap bar-in">
-      <a class="brand" href="#top">Vinayak Mishra</a>
-      <button class="btn small menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
-      <nav id="nav" aria-label="Main">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="btn small theme-btn" type="button">Dark mode</button>
-    </div>
+  <!-- Icon sprite (Feather icons, MIT license) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
+  </svg>
+
+  <header class="top">
+    <a class="logo" href="#top" aria-label="Back to top">VM</a>
+    <a class="handle" href="https://www.linkedin.com/in/your-username">linkedin.com/in/your-username</a>
+    <nav id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
   <main>
-    <section class="hero wrap" id="top">
-      <div>
-        <h1>I turn messy data into answers you can act on.</h1>
-        <p class="lead">I'm Vinayak Mishra. I clean, explore and model data in Python, then explain what I find with clear charts.</p>
-        <p class="actions">
-          <a class="btn primary" href="#projects">See my projects</a>
-          <a class="btn" href="mailto:your-email@example.com">Email me</a>
-        </p>
+    <section class="hero" id="top">
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
+      <span class="orb" aria-hidden="true"></span>
+
+      <div class="hello">
+        <p class="kicker">Hello! I'm</p>
+        <h1>Vinayak<br>Mishra</h1>
       </div>
-      <figure class="plot">
-        <canvas id="plot" role="img" aria-label="Scatter plot of 90 points being sorted into three groups by the k-means algorithm."></canvas>
-        <figcaption>
-          <span>k-means, k = 3: points join the nearest center, then each center moves to the middle of its group.</span>
-          <button class="btn small" id="rerun" type="button">Run again</button>
-        </figcaption>
-      </figure>
+
+      <div class="stage">
+        <span class="mono" aria-hidden="true">VM</span>
+        <img class="avatar" src="assets/avatar.png" alt="Portrait of Vinayak Mishra" hidden>
+      </div>
+
+      <div class="role">
+        <p class="kicker">Data Science &amp;</p>
+        <!-- Edit, add or remove words here. The script handles the loop. -->
+        <ul class="roller">
+          <li>Machine Learning</li>
+          <li>Analytics</li>
+          <li>Visualization</li>
+        </ul>
+      </div>
+
+      <ul class="rail" aria-label="Social links">
+        <li><a href="https://github.com/your-username" aria-label="GitHub"><svg class="ico"><use href="#i-github"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/your-username" aria-label="LinkedIn"><svg class="ico"><use href="#i-linkedin"/></svg></a></li>
+        <li><a href="mailto:your-email@example.com" aria-label="Email"><svg class="ico"><use href="#i-mail"/></svg></a></li>
+        <li><a href="https://your-username.github.io" aria-label="Website"><svg class="ico"><use href="#i-globe"/></svg></a></li>
+      </ul>
+      <a class="resume" href="assets/resume.pdf" target="_blank" rel="noopener">Resume <svg class="ico"><use href="#i-file"/></svg></a>
     </section>
 
-    <section class="block wrap" id="projects">
-      <h2>Projects</h2>
+    <section class="block wrap" id="about">
+      <h2>About</h2>
+      <div class="cols">
+        <div>
+          <p>Most of my work so far is the first half of a data project: cleaning messy data, exploring it and charting what it shows. I do it all in Python, and I write each project up so someone who didn't build it can follow along.</p>
+          <p>I've also completed a full machine learning and data science program, and I'm looking for roles where I can apply it.</p>
+        </div>
+        <dl>
+          <div><dt>Certificate</dt><dd>Complete Machine Learning &amp; Data Science Program, GeeksforGeeks, July 2025</dd></div>
+          <div><dt>Focus</dt><dd>Data cleaning, exploratory analysis, visualization</dd></div>
+          <div><dt>Tools</dt><dd>Python, Pandas, NumPy, Matplotlib, Seaborn</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="block wrap" id="work">
+      <h2>Work</h2>
       <!-- To add a project, copy one <article> block and edit it. -->
       <article class="project">
         <h3>Global sugarcane production</h3>
@@ -63,21 +102,6 @@
           <p><a href="https://github.com/your-username/black-friday-eda">View code on GitHub</a></p>
         </div>
       </article>
-    </section>
-
-    <section class="block wrap" id="about">
-      <h2>About</h2>
-      <div class="cols">
-        <div>
-          <p>Most of my work so far is the first half of a data project: cleaning messy data, exploring it and charting what it shows. I do it all in Python, and I write each project up so someone who didn't build it can follow along.</p>
-          <p>I've also completed a full machine learning and data science program, and I'm looking for roles where I can apply it.</p>
-        </div>
-        <dl>
-          <div><dt>Certificate</dt><dd>Complete Machine Learning &amp; Data Science Program, GeeksforGeeks, July 2025</dd></div>
-          <div><dt>Focus</dt><dd>Data cleaning, exploratory analysis, visualization</dd></div>
-          <div><dt>Tools</dt><dd>Python, Pandas, NumPy, Matplotlib, Seaborn</dd></div>
-        </dl>
-      </div>
     </section>
 
     <section class="block wrap" id="contact">
