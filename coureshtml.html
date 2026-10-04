@@ -3,166 +3,170 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HTML for Beginners — Write the markup. See it render.</title>
+<title>HTML for Beginners — Five steps to your first real webpage</title>
 <meta name="description" content="A five-module, beginner-friendly HTML course by Vinayak Mishra — from your first tag to HTML that search engines can find." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23E34F26'/%3E%3Ctext x='50' y='66' font-family='monospace' font-size='46' font-weight='700' fill='white' text-anchor='middle'%3E%3C/%3E%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%238B5CF6'/%3E%3Ctext x='50' y='67' font-family='sans-serif' font-size='44' font-weight='800' fill='white' text-anchor='middle'%3E%3C/%3E%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
 <style>
   :root{
-    --paper:#F6F5F1; --panel:#FFFFFF; --ink:#1B1815; --ink-soft:#6B655D;
-    --line:#E4E0D6; --flame:#E34F26; --flame-dark:#B93D1A; --teal:#116857;
-    --editor-bg:#1A1611; --editor-text:#ECE7DD;
-    --m1:#E34F26; --m2:#F06529; --m3:#F7931E; --m4:#8B5CF6; --m5:#10B981;
-    --radius:10px;
+    --bg:#FFFFFF; --surface:#F7F6FB; --ink:#171521; --ink-soft:#6E6B7A; --line:#E9E7F2;
+    --header-bg:rgba(255,255,255,.86); --invert-bg:#171521; --invert-text:#FFFFFF;
+    --c1:#E34F26; --c2:#F06529; --c3:#F7931E; --c4:#8B5CF6; --c5:#10B981;
+    --zomato:#E23744;
+    --radius:16px;
+  }
+  :root[data-theme="dark"]{
+    --bg:#121018; --surface:#1A1722; --ink:#F3F1F8; --ink-soft:#A39FB0; --line:#2B2735;
+    --header-bg:rgba(18,16,24,.86); --invert-bg:#F3F1F8; --invert-text:#171521;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font-family:'Inter',-apple-system,sans-serif; line-height:1.55;
-    -webkit-font-smoothing:antialiased;
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Manrope',-apple-system,sans-serif; line-height:1.55; font-size:16px;
+    -webkit-font-smoothing:antialiased; transition:background .2s ease, color .2s ease;
   }
-  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif; margin:0; letter-spacing:-0.01em;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
+  h1,h2,h3,.display{font-family:'Unbounded',sans-serif; margin:0; letter-spacing:-0.01em; font-weight:700;}
+  .mono{font-family:'JetBrains Mono',monospace;}
   a{color:inherit;}
-  section{scroll-margin-top:84px;}
-  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+  section{scroll-margin-top:90px;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
   p{color:var(--ink-soft); margin:0;}
-  ::selection{background:var(--flame); color:#fff;}
-  :focus-visible{outline:2px solid var(--flame); outline-offset:3px; border-radius:4px;}
+  ::selection{background:var(--c4); color:#fff;}
+  :focus-visible{outline:2px solid var(--c4); outline-offset:3px; border-radius:4px;}
+
+  /* ---------- Signature spectrum strip ---------- */
+  .spectrum-strip{display:flex; height:5px;}
+  .spectrum-strip span{flex:1;}
+  .spectrum-strip span:nth-child(1){background:var(--c1);}
+  .spectrum-strip span:nth-child(2){background:var(--c2);}
+  .spectrum-strip span:nth-child(3){background:var(--c3);}
+  .spectrum-strip span:nth-child(4){background:var(--c4);}
+  .spectrum-strip span:nth-child(5){background:var(--c5);}
 
   /* ---------- Header ---------- */
-  header.site{position:sticky; top:0; z-index:20; background:rgba(246,245,241,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  header.site{position:sticky; top:0; z-index:20; background:var(--header-bg); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); transition:background .2s ease, border-color .2s ease;}
   .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
-  .brand{display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:700; font-size:1.02rem; color:var(--ink);}
-  .brand-mark{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:var(--flame); color:#fff; font-family:'IBM Plex Mono'; font-size:.8rem; font-weight:600;}
-  nav.links{display:flex; align-items:center; gap:30px;}
-  nav.links a{text-decoration:none; color:var(--ink-soft); font-size:.93rem; font-weight:500; padding-bottom:3px; border-bottom:1.5px solid transparent; transition:color .15s ease, border-color .15s ease;}
-  nav.links a:hover{color:var(--ink); border-color:var(--flame);}
-  .gh-link{display:none;}
-  .gh-btn{display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--ink); border-radius:8px; text-decoration:none; font-size:.86rem; font-weight:600; color:var(--ink); transition:background .15s ease, color .15s ease;}
-  .gh-btn:hover{background:var(--ink); color:#fff;}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Unbounded'; font-weight:700; font-size:1rem; color:var(--ink);}
+  .brand-mark{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:9px; background:var(--c4); color:#fff; font-family:'JetBrains Mono'; font-size:.82rem; font-weight:600;}
+  nav.links{display:flex; align-items:center; gap:28px;}
+  nav.links a.navlink{text-decoration:none; color:var(--ink-soft); font-size:.92rem; font-weight:600; padding-bottom:3px; border-bottom:1.5px solid transparent; transition:color .15s ease, border-color .15s ease;}
+  nav.links a.navlink:hover{color:var(--ink); border-color:var(--c4);}
+  .gh-btn{display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--line); border-radius:8px; text-decoration:none; font-size:.85rem; font-weight:700; color:var(--ink); transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .gh-btn:hover{background:var(--c1); color:#fff; border-color:var(--c1);}
   .gh-btn svg{width:16px; height:16px; fill:currentColor;}
-  .burger{display:none;}
-  @media (max-width:760px){
-    nav.links a.navlink{display:none;}
-  }
+  .theme-toggle{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; border:1.5px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; padding:0; transition:border-color .15s ease;}
+  .theme-toggle:hover{border-color:var(--c4);}
+  .theme-toggle svg{width:16px; height:16px;}
+  .theme-toggle .icon-sun{display:none;}
+  [data-theme="dark"] .theme-toggle .icon-moon{display:none;}
+  [data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+  @media (max-width:760px){ nav.links a.navlink{display:none;} }
 
   /* ---------- Hero ---------- */
-  .hero{padding:68px 0 64px;}
-  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:center;}
-  .hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem); line-height:1.08;}
-  .hero p.lede{font-size:1.08rem; max-width:46ch; margin:18px 0 30px;}
-  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:38px;}
-  .btn-primary{background:var(--ink); color:#fff; padding:13px 22px; border-radius:8px; text-decoration:none; font-weight:600; font-size:.95rem; display:inline-flex; align-items:center; gap:8px; transition:background .15s ease;}
-  .btn-primary:hover{background:var(--flame);}
-  .btn-ghost{padding:13px 20px; border-radius:8px; text-decoration:none; font-weight:600; font-size:.95rem; color:var(--ink); border:1.5px solid var(--line); transition:border-color .15s ease;}
-  .btn-ghost:hover{border-color:var(--ink);}
-  .stats{display:flex; gap:40px;}
-  .stat .num{font-family:'Space Grotesk'; font-weight:700; font-size:1.7rem; color:var(--ink);}
-  .stat .label{font-size:.82rem; color:var(--ink-soft);}
+  .hero{padding:72px 0 88px;}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .hero h1{font-size:clamp(2.2rem,4.4vw,3.4rem); line-height:1.12;}
+  .hero p.lede{font-size:1.08rem; max-width:42ch; margin:20px 0 32px;}
+  .btn-primary{background:var(--c1); color:#fff; padding:14px 24px; border-radius:10px; text-decoration:none; font-weight:700; font-size:.95rem; display:inline-flex; align-items:center; gap:8px; transition:filter .15s ease;}
+  .btn-primary:hover{filter:brightness(.9);}
 
-  /* Browser mock */
-  @media (prefers-reduced-motion:no-preference){
-    .browser{animation:rise .6s ease both;}
-    @keyframes rise{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
-  }
-  .browser{background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 24px 54px -26px rgba(27,24,21,.4);}
-  .browser-bar{display:flex; align-items:center; gap:8px; padding:10px 12px; background:#EEEAE0; border-bottom:1px solid var(--line);}
-  .dot{width:9px; height:9px; border-radius:50%;}
-  .browser-url{margin-left:8px; flex:1; font-size:.68rem; color:var(--ink-soft); background:#fff; border:1px solid var(--line); border-radius:20px; padding:4px 10px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
-  .split{display:grid; grid-template-columns:1fr 1fr;}
-  .code-pane{background:var(--editor-bg); color:var(--editor-text); padding:18px 16px; font-size:.74rem; line-height:1.75;}
-  .code-pane .c-tag{color:#F2876A;} .code-pane .c-attr{color:#E3B567;} .code-pane .c-str{color:#6FC2AC;} .code-pane .c-mut{color:#8A8378;}
-  .cursor{display:inline-block; width:6px; height:13px; background:var(--flame); vertical-align:-2px; margin-left:2px;}
-  @media (prefers-reduced-motion:no-preference){ .cursor{animation:blink 1s step-end infinite;} }
-  @keyframes blink{50%{opacity:0;}}
-  .render-pane{padding:22px 18px; display:flex; flex-direction:column; justify-content:center; gap:8px; border-left:1px solid var(--line);}
-  .render-pane h3{font-size:1.25rem;}
-  .render-pane p{font-size:.86rem;}
-  .render-tag{align-self:flex-start; margin-top:6px; font-size:.68rem; color:var(--teal); background:rgba(17,104,87,.1); padding:3px 9px; border-radius:20px; font-family:'IBM Plex Mono';}
-  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} .split{grid-template-columns:1fr;} .render-pane{border-left:none; border-top:1px solid var(--line);} }
+  .spectrum{display:flex; flex-direction:column; gap:10px;}
+  .spectrum-bar{display:flex; align-items:center; justify-content:space-between; gap:12px; height:52px; padding:0 20px; border-radius:10px; text-decoration:none; color:#fff; font-weight:700; transition:transform .15s ease, filter .15s ease;}
+  .spectrum-bar:hover, .spectrum-bar:focus-visible{transform:translateX(6px); filter:brightness(1.05);}
+  .spectrum-bar .sb-num{font-family:'JetBrains Mono'; font-size:.78rem; opacity:.85;}
+  .spectrum-bar .sb-label{font-family:'Unbounded'; font-size:.88rem;}
+  .spectrum-bar:nth-child(1){background:var(--c1); width:62%;}
+  .spectrum-bar:nth-child(2){background:var(--c2); width:73%;}
+  .spectrum-bar:nth-child(3){background:var(--c3); width:84%;}
+  .spectrum-bar:nth-child(4){background:var(--c4); width:95%;}
+  .spectrum-bar:nth-child(5){background:var(--c5); width:100%;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} .spectrum-bar{width:100% !important;} }
 
   /* ---------- Section heads ---------- */
-  .section-head{max-width:56ch; margin-bottom:38px;}
-  .section-head h2{font-size:clamp(1.5rem,3vw,2rem); margin-bottom:10px;}
-  .kicker{font-family:'IBM Plex Mono'; font-size:.74rem; color:var(--flame); margin-bottom:10px; display:block;}
+  .section-head{max-width:52ch; margin-bottom:40px;}
+  .section-head h2{font-size:clamp(1.55rem,3vw,2.1rem); margin-bottom:10px;}
 
-  /* ---------- Modules (file-listing) ---------- */
-  .modules{padding:64px 0;}
-  .module-list{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); overflow:hidden;}
-  .module-row{display:grid; grid-template-columns:52px 190px 1fr auto; align-items:center; gap:18px; padding:20px 22px; text-decoration:none; color:inherit; border-left:3px solid transparent; border-bottom:1px solid var(--line); transition:background .15s ease, border-left-color .15s ease;}
-  .module-list a.module-row:last-child{border-bottom:none;}
-  .module-row:hover, .module-row:focus-visible{background:#FBFAF7;}
-  .module-row:nth-child(1){border-left-color:var(--m1);}
-  .module-row:nth-child(2){border-left-color:var(--m2);}
-  .module-row:nth-child(3){border-left-color:var(--m3);}
-  .module-row:nth-child(4){border-left-color:var(--m4);}
-  .module-row:nth-child(5){border-left-color:var(--m5);}
-  .m-num{font-family:'IBM Plex Mono'; font-weight:600; color:var(--ink-soft); font-size:.95rem;}
-  .m-path{font-family:'IBM Plex Mono'; font-size:.8rem; color:var(--ink);}
-  .m-body h3{font-size:1.02rem; margin-bottom:4px;}
-  .m-body p{font-size:.88rem;}
-  .m-open{font-size:.84rem; font-weight:600; color:var(--ink-soft); white-space:nowrap;}
-  .module-row:hover .m-open{color:var(--flame);}
-  @media (max-width:700px){
-    .module-row{grid-template-columns:1fr; row-gap:8px;}
-    .m-open{justify-self:start;}
-  }
+  /* ---------- Modules ---------- */
+  .modules{padding:88px 0; background:var(--surface);}
+  .module-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:20px;}
+  .module-card{background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:26px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:16px; transition:transform .15s ease, box-shadow .15s ease;}
+  .module-card:hover, .module-card:focus-visible{transform:translateY(-4px); box-shadow:0 20px 36px -22px rgba(23,21,33,.28);}
+  .mc-badge{width:44px; height:44px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-family:'JetBrains Mono'; font-weight:700; font-size:.92rem; color:#fff;}
+  .module-card:nth-child(1) .mc-badge{background:var(--c1);}
+  .module-card:nth-child(2) .mc-badge{background:var(--c2);}
+  .module-card:nth-child(3) .mc-badge{background:var(--c3);}
+  .module-card:nth-child(4) .mc-badge{background:var(--c4);}
+  .module-card:nth-child(5) .mc-badge{background:var(--c5);}
+  .mc-path{font-family:'JetBrains Mono'; font-size:.72rem; color:var(--ink-soft);}
+  .mc-body h3{font-size:1.04rem; margin:4px 0 8px;}
+  .mc-body p{font-size:.87rem;}
 
   /* ---------- Projects ---------- */
-  .projects{padding:64px 0; background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-  .project-card{border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper); text-decoration:none; color:inherit; display:block; transition:box-shadow .15s ease, transform .15s ease;}
-  .project-card:hover, .project-card:focus-visible{box-shadow:0 18px 36px -24px rgba(27,24,21,.35); transform:translateY(-2px);}
-  .proj-preview{height:128px; position:relative; overflow:hidden;}
-  .proj-bar{display:flex; gap:5px; padding:9px 11px; background:#EEEAE0; border-bottom:1px solid var(--line);}
-  .proj-body{padding:18px 20px 20px;}
-  .proj-body h3{font-size:1.06rem; margin-bottom:6px;}
+  .projects{padding:88px 0;}
+  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .project-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; text-decoration:none; color:inherit; display:block; transition:transform .15s ease, box-shadow .15s ease;}
+  .project-card:hover, .project-card:focus-visible{transform:translateY(-4px); box-shadow:0 20px 36px -22px rgba(23,21,33,.28);}
+  .pc-bar{height:6px;}
+  .pc-zomato .pc-bar{background:var(--zomato);}
+  .pc-folio .pc-bar{background:var(--c4);}
+  .proj-preview{height:120px; position:relative; overflow:hidden; background:var(--bg);}
+  .zom-hero{height:30px; margin:14px 14px 0; border-radius:6px; background:linear-gradient(135deg,var(--zomato),#B9222E);}
+  .zom-cards{display:flex; gap:8px; padding:10px 14px 0;}
+  .zom-card{flex:1; height:36px; background:var(--surface); border:1px solid var(--line); border-radius:6px;}
+  .kmeans{width:100%; height:100%; display:block;}
+  .proj-body{padding:20px 22px 24px;}
+  .proj-body h3{font-size:1.05rem; margin-bottom:6px;}
   .proj-body p{font-size:.87rem; margin-bottom:14px;}
   .proj-tags{display:flex; gap:7px; flex-wrap:wrap;}
-  .proj-tag{font-family:'IBM Plex Mono'; font-size:.68rem; color:var(--ink-soft); border:1px solid var(--line); padding:3px 9px; border-radius:20px;}
-  /* zomato illustration */
-  .zom-hero{height:34px; background:linear-gradient(135deg,#E23744,#C21F2C);}
-  .zom-cards{display:flex; gap:8px; padding:14px 14px 0;}
-  .zom-card{flex:1; height:42px; background:#fff; border:1px solid var(--line); border-radius:6px;}
-  /* portfolio illustration: k-means dot clusters */
-  .kmeans{width:100%; height:100%;}
+  .proj-tag{font-family:'JetBrains Mono'; font-size:.68rem; color:var(--ink-soft); border:1px solid var(--line); padding:3px 9px; border-radius:20px;}
   @media (max-width:760px){ .project-grid{grid-template-columns:1fr;} }
 
   /* ---------- Getting started ---------- */
-  .start{padding:64px 0;}
-  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:28px;}
-  .step{border:1px solid var(--line); border-radius:var(--radius); padding:22px; background:var(--panel);}
-  .step .s-num{font-family:'Space Grotesk'; font-weight:700; font-size:1.3rem; color:var(--flame); margin-bottom:10px; display:block;}
+  .start{padding:88px 0; background:var(--surface);}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .step{background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:24px;}
+  .step .s-num{font-family:'Unbounded'; font-weight:700; font-size:1.3rem; color:var(--c1); margin-bottom:12px; display:block;}
   .step h3{font-size:1rem; margin-bottom:8px;}
   .step p{font-size:.87rem;}
-  .step code{display:block; margin-top:10px; font-family:'IBM Plex Mono'; font-size:.72rem; background:var(--editor-bg); color:var(--editor-text); padding:10px 12px; border-radius:6px; overflow-x:auto; white-space:pre;}
+  .step code{display:block; margin-top:12px; font-family:'JetBrains Mono'; font-size:.72rem; background:var(--invert-bg); color:var(--invert-text); padding:10px 12px; border-radius:8px; overflow-x:auto; white-space:pre;}
   @media (max-width:760px){ .steps{grid-template-columns:1fr;} }
 
   /* ---------- Resources ---------- */
-  .resources{padding:64px 0; background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .res-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  .res-card{display:flex; justify-content:space-between; align-items:center; gap:14px; border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; text-decoration:none; color:inherit; background:var(--paper); transition:border-color .15s ease;}
-  .res-card:hover, .res-card:focus-visible{border-color:var(--flame);}
+  .resources{padding:88px 0;}
+  .res-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .res-card{display:block; border:1px solid var(--line); border-radius:var(--radius); padding:22px; text-decoration:none; color:inherit; transition:border-color .15s ease;}
+  .res-card:hover, .res-card:focus-visible{border-color:var(--c4);}
   .res-card h3{font-size:.98rem; margin-bottom:5px;}
-  .res-card p{font-size:.84rem;}
+  .res-card p{font-size:.85rem;}
   @media (max-width:700px){ .res-grid{grid-template-columns:1fr;} }
 
   /* ---------- Footer ---------- */
-  footer{padding:40px 0 48px;}
-  .foot-row{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;}
+  footer{padding:44px 0 0;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding:0 24px 32px; max-width:1160px; margin:0 auto;}
   .foot-row p{font-size:.85rem;}
   .foot-links{display:flex; gap:20px; font-size:.85rem;}
   .foot-links a{text-decoration:none; color:var(--ink-soft);}
-  .foot-links a:hover{color:var(--flame);}
+  .foot-links a:hover{color:var(--c1);}
 </style>
 </head>
 <body>
 
 <header class="site">
+  <div class="spectrum-strip" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
   <div class="wrap nav">
     <a href="#top" class="brand"><span class="brand-mark">&lt;/&gt;</span>HTML for Beginners</a>
     <nav class="links">
@@ -170,6 +174,10 @@
       <a class="navlink" href="#projects">Projects</a>
       <a class="navlink" href="#start">Get started</a>
       <a class="navlink" href="#resources">Resources</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
       <a class="gh-btn" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         Repo
@@ -184,87 +192,70 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <h1>Write the markup.<br>See it render.<br>Repeat.</h1>
-        <p class="lede">A five-module course for absolute beginners — from your first <span class="mono">&lt;h1&gt;</span> to writing HTML that search engines can actually find. No installs, no prior experience.</p>
-        <div class="hero-ctas">
-          <a class="btn-primary" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/blob/main/Introdution-to-html/Readme.md" target="_blank" rel="noopener">Start with Module 1</a>
-          <a class="btn-ghost" href="#modules">See all modules</a>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="num">5</div><div class="label">Modules</div></div>
-          <div class="stat"><div class="num">2</div><div class="label">Practice projects</div></div>
-          <div class="stat"><div class="num">100%</div><div class="label">Free &amp; open source</div></div>
-        </div>
+        <h1>From your first tag to a page the web can find.</h1>
+        <p class="lede">A five-module HTML course for complete beginners. Follow the spectrum, one color at a time — no installs, no prior experience.</p>
+        <a class="btn-primary" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/blob/main/Introdution-to-html/Readme.md" target="_blank" rel="noopener">Start with Module 1</a>
       </div>
 
-      <div class="browser" role="img" aria-label="Browser window showing HTML source code on the left and the rendered result on the right">
-        <div class="browser-bar">
-          <span class="dot" style="background:#EC6A5E"></span>
-          <span class="dot" style="background:#F4BF4F"></span>
-          <span class="dot" style="background:#61C454"></span>
-          <span class="browser-url mono">html-for-beginners/index.html</span>
-        </div>
-        <div class="split">
-          <div class="code-pane mono" aria-hidden="true">
-<span class="c-mut">&lt;!DOCTYPE html&gt;</span><br>
-<span class="c-tag">&lt;html</span> <span class="c-attr">lang=</span><span class="c-str">"en"</span><span class="c-tag">&gt;</span><br>
-&nbsp;&nbsp;<span class="c-tag">&lt;head&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-tag">&lt;title&gt;</span>My First Page<span class="c-tag">&lt;/title&gt;</span><br>
-&nbsp;&nbsp;<span class="c-tag">&lt;/head&gt;</span><br>
-&nbsp;&nbsp;<span class="c-tag">&lt;body&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-tag">&lt;h1&gt;</span>Hello, World!<span class="c-tag">&lt;/h1&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-tag">&lt;p&gt;</span>Welcome to HTML.<span class="c-tag">&lt;/p&gt;</span><span class="cursor"></span><br>
-&nbsp;&nbsp;<span class="c-tag">&lt;/body&gt;</span><br>
-<span class="c-tag">&lt;/html&gt;</span>
-          </div>
-          <div class="render-pane">
-            <h3>Hello, World!</h3>
-            <p>Welcome to HTML.</p>
-            <span class="render-tag">rendered output</span>
-          </div>
-        </div>
+      <div class="spectrum" role="img" aria-label="Five course modules shown as an ascending color spectrum: Introduction, Basic Tags, Layout, Lists Forms and Tables, SEO">
+        <a class="spectrum-bar" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/blob/main/Introdution-to-html/Readme.md" target="_blank" rel="noopener"><span class="sb-label">Introduction</span><span class="sb-num">01</span></a>
+        <a class="spectrum-bar" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/Basic-tag" target="_blank" rel="noopener"><span class="sb-label">Basic Tags</span><span class="sb-num">02</span></a>
+        <a class="spectrum-bar" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/Html-layout" target="_blank" rel="noopener"><span class="sb-label">Layout</span><span class="sb-num">03</span></a>
+        <a class="spectrum-bar" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/list-forms-table" target="_blank" rel="noopener"><span class="sb-label">Lists, Forms &amp; Tables</span><span class="sb-num">04</span></a>
+        <a class="spectrum-bar" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/SEO" target="_blank" rel="noopener"><span class="sb-label">SEO</span><span class="sb-num">05</span></a>
       </div>
     </div>
   </section>
 
   <!-- Modules -->
-  <section class="modules wrap" id="modules">
-    <div class="section-head">
-      <h2>Five modules, each one building on the last</h2>
-      <p>Every module lives in its own folder in the repository — work through them in order, or open whichever one you need.</p>
-    </div>
-
-    <div class="module-list">
-      <a class="module-row" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/blob/main/Introdution-to-html/Readme.md" target="_blank" rel="noopener">
-        <span class="m-num">01</span>
-        <span class="m-path">Introdution-to-html/</span>
-        <span class="m-body"><h3>Introduction to HTML</h3><p>The HTML boilerplate, how HTML, CSS and JavaScript fit together, and setting up your first project folder.</p></span>
-        <span class="m-open">Open module</span>
-      </a>
-      <a class="module-row" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/Basic-tag" target="_blank" rel="noopener">
-        <span class="m-num">02</span>
-        <span class="m-path">Basic-tag/</span>
-        <span class="m-body"><h3>Basic Tags</h3><p>Headings, paragraphs, text formatting, links and images — the tags you'll reach for every day.</p></span>
-        <span class="m-open">Open module</span>
-      </a>
-      <a class="module-row" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/Html-layout" target="_blank" rel="noopener">
-        <span class="m-num">03</span>
-        <span class="m-path">Html-layout/</span>
-        <span class="m-body"><h3>HTML Layout</h3><p>Semantic elements like header, nav, main and footer that give a page real structure.</p></span>
-        <span class="m-open">Open module</span>
-      </a>
-      <a class="module-row" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/list-forms-table" target="_blank" rel="noopener">
-        <span class="m-num">04</span>
-        <span class="m-path">list-forms-table/</span>
-        <span class="m-body"><h3>Lists, Tables, Forms &amp; Video</h3><p>Organize content, show data in a table, collect input with a form, and embed video.</p></span>
-        <span class="m-open">Open module</span>
-      </a>
-      <a class="module-row" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/SEO" target="_blank" rel="noopener">
-        <span class="m-num">05</span>
-        <span class="m-path">SEO/</span>
-        <span class="m-body"><h3>SEO in HTML</h3><p>How title tags, meta descriptions and semantic markup help a page actually get found.</p></span>
-        <span class="m-open">Open module</span>
-      </a>
+  <section class="modules" id="modules">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Five modules, each one building on the last</h2>
+        <p>Every module lives in its own folder in the repository — work through them in order, or open whichever one you need.</p>
+      </div>
+      <div class="module-grid">
+        <a class="module-card" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/blob/main/Introdution-to-html/Readme.md" target="_blank" rel="noopener">
+          <span class="mc-badge">01</span>
+          <div class="mc-body">
+            <span class="mc-path">Introdution-to-html/</span>
+            <h3>Introduction to HTML</h3>
+            <p>The HTML boilerplate, how HTML, CSS and JavaScript fit together, and setting up your first project folder.</p>
+          </div>
+        </a>
+        <a class="module-card" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/Basic-tag" target="_blank" rel="noopener">
+          <span class="mc-badge">02</span>
+          <div class="mc-body">
+            <span class="mc-path">Basic-tag/</span>
+            <h3>Basic Tags</h3>
+            <p>Headings, paragraphs, text formatting, links and images — the tags you'll reach for every day.</p>
+          </div>
+        </a>
+        <a class="module-card" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/Html-layout" target="_blank" rel="noopener">
+          <span class="mc-badge">03</span>
+          <div class="mc-body">
+            <span class="mc-path">Html-layout/</span>
+            <h3>HTML Layout</h3>
+            <p>Semantic elements like header, nav, main and footer that give a page real structure.</p>
+          </div>
+        </a>
+        <a class="module-card" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/list-forms-table" target="_blank" rel="noopener">
+          <span class="mc-badge">04</span>
+          <div class="mc-body">
+            <span class="mc-path">list-forms-table/</span>
+            <h3>Lists, Tables, Forms &amp; Video</h3>
+            <p>Organize content, show data in a table, collect input with a form, and embed video.</p>
+          </div>
+        </a>
+        <a class="module-card" href="https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS/tree/main/SEO" target="_blank" rel="noopener">
+          <span class="mc-badge">05</span>
+          <div class="mc-body">
+            <span class="mc-path">SEO/</span>
+            <h3>SEO in HTML</h3>
+            <p>How title tags, meta descriptions and semantic markup help a page actually get found.</p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -277,9 +268,9 @@
       </div>
       <div class="project-grid">
 
-        <a class="project-card" href="https://github.com/vinayakmishra4/ZOMATO-CLONE" target="_blank" rel="noopener">
+        <a class="project-card pc-zomato" href="https://github.com/vinayakmishra4/ZOMATO-CLONE" target="_blank" rel="noopener">
+          <div class="pc-bar"></div>
           <div class="proj-preview">
-            <div class="proj-bar"><span class="dot" style="background:#D9D4C7"></span><span class="dot" style="background:#D9D4C7"></span><span class="dot" style="background:#D9D4C7"></span></div>
             <div class="zom-hero" aria-hidden="true"></div>
             <div class="zom-cards" aria-hidden="true"><div class="zom-card"></div><div class="zom-card"></div><div class="zom-card"></div></div>
           </div>
@@ -290,14 +281,14 @@
           </div>
         </a>
 
-        <a class="project-card" href="https://github.com/vinayakmishra4/My-Protfilo" target="_blank" rel="noopener">
+        <a class="project-card pc-folio" href="https://github.com/vinayakmishra4/My-Protfilo" target="_blank" rel="noopener">
+          <div class="pc-bar"></div>
           <div class="proj-preview">
-            <div class="proj-bar"><span class="dot" style="background:#D9D4C7"></span><span class="dot" style="background:#D9D4C7"></span><span class="dot" style="background:#D9D4C7"></span></div>
             <svg class="kmeans" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
               <rect width="300" height="90" fill="#17120E"/>
-              <g fill="#E34F26"><circle cx="48" cy="30" r="3"/><circle cx="60" cy="22" r="3"/><circle cx="40" cy="48" r="3"/><circle cx="66" cy="44" r="3"/><circle cx="54" cy="58" r="3"/></g>
-              <g fill="#F7931E"><circle cx="150" cy="20" r="3"/><circle cx="168" cy="34" r="3"/><circle cx="140" cy="38" r="3"/><circle cx="158" cy="52" r="3"/><circle cx="178" cy="22" r="3"/></g>
-              <g fill="#10B981"><circle cx="240" cy="50" r="3"/><circle cx="256" cy="62" r="3"/><circle cx="230" cy="68" r="3"/><circle cx="250" cy="34" r="3"/><circle cx="266" cy="48" r="3"/></g>
+              <g fill="var(--c1)"><circle cx="48" cy="30" r="3"/><circle cx="60" cy="22" r="3"/><circle cx="40" cy="48" r="3"/><circle cx="66" cy="44" r="3"/><circle cx="54" cy="58" r="3"/></g>
+              <g fill="var(--c3)"><circle cx="150" cy="20" r="3"/><circle cx="168" cy="34" r="3"/><circle cx="140" cy="38" r="3"/><circle cx="158" cy="52" r="3"/><circle cx="178" cy="22" r="3"/></g>
+              <g fill="var(--c5)"><circle cx="240" cy="50" r="3"/><circle cx="256" cy="62" r="3"/><circle cx="230" cy="68" r="3"/><circle cx="250" cy="34" r="3"/><circle cx="266" cy="48" r="3"/></g>
             </svg>
           </div>
           <div class="proj-body">
@@ -312,29 +303,31 @@
   </section>
 
   <!-- Getting started -->
-  <section class="start wrap" id="start">
-    <div class="section-head">
-      <h2>Get it running in under a minute</h2>
-      <p>You only need a code editor and a browser — nothing to install.</p>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <span class="s-num">01</span>
-        <h3>Clone the repository</h3>
-        <p>Pull every module down to your computer.</p>
-        <code>git clone https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS.git</code>
+  <section class="start" id="start">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Get it running in under a minute</h2>
+        <p>You only need a code editor and a browser — nothing to install.</p>
       </div>
-      <div class="step">
-        <span class="s-num">02</span>
-        <h3>Open a module folder</h3>
-        <p>Pick a module and open its files in your editor.</p>
-        <code>cd HTML-FOR-BEGINEERS</code>
-      </div>
-      <div class="step">
-        <span class="s-num">03</span>
-        <h3>Edit, save, refresh</h3>
-        <p>Open the HTML file in your browser, change the code, and refresh to see it live.</p>
-        <code>open index.html</code>
+      <div class="steps">
+        <div class="step">
+          <span class="s-num">01</span>
+          <h3>Clone the repository</h3>
+          <p>Pull every module down to your computer.</p>
+          <code>git clone https://github.com/vinayakmishra4/HTML-FOR-BEGINEERS.git</code>
+        </div>
+        <div class="step">
+          <span class="s-num">02</span>
+          <h3>Open a module folder</h3>
+          <p>Pick a module and open its files in your editor.</p>
+          <code>cd HTML-FOR-BEGINEERS</code>
+        </div>
+        <div class="step">
+          <span class="s-num">03</span>
+          <h3>Edit, save, refresh</h3>
+          <p>Open the HTML file in your browser, change the code, and refresh to see it live.</p>
+          <code>open index.html</code>
+        </div>
       </div>
     </div>
   </section>
@@ -348,10 +341,10 @@
       </div>
       <div class="res-grid">
         <a class="res-card" href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener">
-          <span><h3>MDN Web Docs — HTML</h3><p>The most trusted, up-to-date HTML reference.</p></span>
+          <h3>MDN Web Docs — HTML</h3><p>The most trusted, up-to-date HTML reference.</p>
         </a>
         <a class="res-card" href="https://www.w3schools.com/html/" target="_blank" rel="noopener">
-          <span><h3>W3Schools — HTML Tutorial</h3><p>Beginner-friendly lessons with a try-it editor.</p></span>
+          <h3>W3Schools — HTML Tutorial</h3><p>Beginner-friendly lessons with a try-it editor.</p>
         </a>
       </div>
     </div>
@@ -360,7 +353,7 @@
 </main>
 
 <footer>
-  <div class="wrap foot-row">
+  <div class="foot-row">
     <p>Built by <strong>Vinayak Mishra</strong> · open source, star the repo if it helped you.</p>
     <div class="foot-links">
       <a href="https://github.com/vinayakmishra4" target="_blank" rel="noopener">GitHub</a>
@@ -368,7 +361,24 @@
       <a href="#top">Back to top</a>
     </div>
   </div>
+  <div class="spectrum-strip" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 </footer>
 
+<script>
+  (function(){
+    var btn = document.getElementById('themeToggle');
+    function updateLabel(){
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    updateLabel();
+    btn.addEventListener('click', function(){
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try{ localStorage.setItem('theme', next); }catch(e){}
+      updateLabel();
+    });
+  })();
+</script>
 </body>
 </html>
