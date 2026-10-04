@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="assets/banner.svg" alt="Vinayak Mishra: data science and machine learning portfolio" width="100%">
+<img src="banner.svg" alt="Vinayak Mishra: data science and machine learning portfolio" width="100%">
 
 <br>
 
